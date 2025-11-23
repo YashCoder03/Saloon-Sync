@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Duration;
 
-import com.saas.salonsync.DTO.JWTToken;
 import com.saas.salonsync.DTO.LoginRequest;
 import com.saas.salonsync.DTO.LoginResposne;
 import com.saas.salonsync.DTO.RegisterRequest;
@@ -21,8 +20,6 @@ import com.saas.salonsync.service.AuthService;
 
 import org.springframework.http.HttpHeaders;
 
-import com.saas.salonsync.DTO.TenantRegisterRequest;
-import com.saas.salonsync.entity.TenantEntity;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,7 +36,7 @@ public class AuthController {
     AuthService authService;
 
     @PostMapping("/login")
-    ResponseEntity<TokenResponse> loginUser(@RequestBody LoginRequest loginRequest){
+    public ResponseEntity<TokenResponse> loginUser(@RequestBody LoginRequest loginRequest){
         LoginResposne loginResposne =  authService.loginUser(loginRequest);
         ResponseCookie cookie = ResponseCookie.from(REFRESH_COOKIE, loginResposne.getRefreshToken())
                 .httpOnly(true)
@@ -55,17 +52,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    ResponseEntity<UserEntity> registerUser(@RequestBody RegisterRequest registerRequest){
+    public ResponseEntity<UserEntity> registerUser(@RequestBody RegisterRequest registerRequest){
         UserEntity user = authService.registerUser(registerRequest);
         return ResponseEntity.ok(user);
-    }
-
-
-    @PostMapping("/tenant/register")
-    public ResponseEntity<TenantEntity> registerTenant(@RequestBody TenantRegisterRequest tenant) {
-        
-        TenantEntity createdTenant= authService.registerTenant(tenant);
-        return ResponseEntity.ok(createdTenant);
     }
     
     

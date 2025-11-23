@@ -9,10 +9,7 @@ import com.saas.salonsync.DTO.JWTToken;
 import com.saas.salonsync.DTO.LoginRequest;
 import com.saas.salonsync.DTO.LoginResposne;
 import com.saas.salonsync.DTO.RegisterRequest;
-import com.saas.salonsync.DTO.TenantRegisterRequest;
-import com.saas.salonsync.entity.TenantEntity;
 import com.saas.salonsync.entity.UserEntity;
-import com.saas.salonsync.repository.TenantRepository;
 import com.saas.salonsync.repository.UserRepository;
 import com.saas.salonsync.util.JwtUtil;
 
@@ -37,7 +34,6 @@ public class AuthService {
     RefreshTokenService refreshTokenService;
 
     @Autowired 
-    TenantRepository tenantRepository;
 
     public LoginResposne loginUser(LoginRequest loginRequest){
         UserEntity user = userRepository.findByUsername(loginRequest.getUsername());
@@ -63,21 +59,5 @@ public class AuthService {
         return user;
 
     }
-
-    public TenantEntity registerTenant(TenantRegisterRequest tenantRegisterRequest){
-        String hashPassword = passwordEncoder.encode(tenantRegisterRequest.getPassword());
-        UserEntity user = new UserEntity(tenantRegisterRequest.getEmail(),hashPassword, tenantRegisterRequest.getUserName());
-        UserEntity createdUser = userRepository.save(user);  
-
-        TenantEntity tenant = new TenantEntity(tenantRegisterRequest.getTenantName(),createdUser.getId());
-        TenantEntity createdTenant = tenantRepository.save(tenant);
-
-        return createdTenant;
-        
-
-    }
-
-    
-
     
 }

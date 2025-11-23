@@ -14,6 +14,10 @@ public class TokenEntity {
     @Column(unique = true, nullable = false)
     private UUID id = UUID.randomUUID();
 
+    public UUID getId() {
+        return id;
+    }
+
     @Column(nullable = false)
     private UUID userId;
 

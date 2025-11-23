@@ -4,8 +4,6 @@ import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity()
@@ -13,15 +11,23 @@ public class UserEntity {
     
     @Id
     @Column(unique = true, nullable = false)
-    private UUID id  = UUID.randomUUID();
+    private final UUID id  = UUID.randomUUID();
 
     @Column(unique = true, nullable = false)
     private String username;
 
     @Column(unique= true, nullable = false)
     private String email;
+
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable=true)
+    private String role;
+
+    @Column(nullable=true)
+    private UUID saloonId;
+    
 
     // Default constructor required by JPA
     public UserEntity() {
@@ -30,6 +36,14 @@ public class UserEntity {
     public UserEntity(String email, String password, String username) {
         this.email = email;
         this.password = password;
+        this.username = username;
+    }
+
+    public UserEntity(String email, String password, String role, UUID saloonId, String username) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.saloonId = saloonId;
         this.username = username;
     }
 
@@ -59,5 +73,21 @@ public class UserEntity {
 
     public UUID getId() {
         return id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public UUID getSaloonId() {
+        return saloonId;
+    }
+
+    public void setSaloonId(UUID saloonId) {
+        this.saloonId = saloonId;
     }
 }
