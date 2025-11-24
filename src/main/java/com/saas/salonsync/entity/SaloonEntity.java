@@ -20,9 +20,25 @@ public class SaloonEntity {
     @Column(nullable=true)
     private String address;
 
+    @Column(nullable=false)
+    private UUID ownerID;
+
+    @Column(nullable=false)
+    private Instant createdAt = Instant.now();
+    
+    public SaloonEntity(UUID id, String name, String address, UUID ownerID, Instant createdAt) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.ownerID = ownerID;
+        this.createdAt = createdAt;
+    }
+
+
     public UUID getId() {
         return id;
     }
+
 
     public void setId(UUID id) {
         this.id = id;
@@ -36,8 +52,7 @@ public class SaloonEntity {
         this.address = address;
     }
 
-    @Column(nullable=false)
-    private UUID ownerID;
+   
 
     public SaloonEntity(String name, String address, UUID ownerID) {
         this.name = name;
@@ -45,8 +60,21 @@ public class SaloonEntity {
         this.ownerID = ownerID;
     }
 
-    @Column(nullable=false)
-    private Instant createdAt = Instant.now();
+   
+
+   
+
+    public void setOwnerID(UUID ownerID) {
+        this.ownerID = ownerID;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public SaloonEntity() {
     }
@@ -66,9 +94,5 @@ public class SaloonEntity {
 
     public UUID getownerID() {
         return ownerID;
-    }
-
-    public void setownerID(UUID ownerID) {
-        this.ownerID = ownerID;
     }
 }

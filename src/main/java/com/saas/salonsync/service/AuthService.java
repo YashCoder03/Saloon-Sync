@@ -33,7 +33,6 @@ public class AuthService {
     @Autowired
     RefreshTokenService refreshTokenService;
 
-    @Autowired 
 
     public LoginResposne loginUser(LoginRequest loginRequest){
         UserEntity user = userRepository.findByUsername(loginRequest.getUsername());

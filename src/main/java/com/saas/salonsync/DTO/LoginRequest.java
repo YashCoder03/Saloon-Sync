@@ -1,4 +1,5 @@
 package com.saas.salonsync.DTO;
+
 public class LoginRequest {
 
     private String userName;

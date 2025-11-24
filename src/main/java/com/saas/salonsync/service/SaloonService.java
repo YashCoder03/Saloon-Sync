@@ -35,6 +35,9 @@ public class SaloonService {
 
         SaloonEntity createdSaloon = saloonRepository.save(saloonEntity);
         return createdSaloon;
+    }
 
+    public void deleteSaloonById(UUID saloonId){
+        saloonRepository.deleteById(saloonId);
     }
 }

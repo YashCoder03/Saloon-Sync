@@ -11,13 +11,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                // Disable CSRF protection completely
                 .csrf(csrf -> csrf.disable())
+                // Allow requests to any URL
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()   // allow everything
+                        .anyRequest().permitAll()
                 )
-                .sessionManagement(session -> session.disable()) // no session
-                .securityContext(security -> security.disable()) // disable security context
-                .headers(headers -> headers.frameOptions().disable()); // for H2 console if needed
+                // Allow the H2 console to load within a frame
+                .headers(headers -> headers.frameOptions().sameOrigin()) 
+                // Disable session management (optional, based on your original code)
+                .sessionManagement(session -> session.disable())
+                // Disable security context (optional, based on your original code)
+                .securityContext(security -> security.disable()); 
 
         return http.build();
     }
