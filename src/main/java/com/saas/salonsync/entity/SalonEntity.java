@@ -8,7 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class SaloonEntity {
+public class SalonEntity {
     
     @Id
     @Column(unique = true, nullable = false)
@@ -26,7 +26,7 @@ public class SaloonEntity {
     @Column(nullable=false)
     private Instant createdAt = Instant.now();
     
-    public SaloonEntity(UUID id, String name, String address, UUID ownerID, Instant createdAt) {
+    public SalonEntity(UUID id, String name, String address, UUID ownerID, Instant createdAt) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -54,7 +54,7 @@ public class SaloonEntity {
 
    
 
-    public SaloonEntity(String name, String address, UUID ownerID) {
+    public SalonEntity(String name, String address, UUID ownerID) {
         this.name = name;
         this.address = address;
         this.ownerID = ownerID;
@@ -76,10 +76,10 @@ public class SaloonEntity {
         this.createdAt = createdAt;
     }
 
-    public SaloonEntity() {
+    public SalonEntity() {
     }
 
-    public SaloonEntity(String name, UUID ownerID) {
+    public SalonEntity(String name, UUID ownerID) {
         this.name = name;
         this.ownerID = ownerID;
     }

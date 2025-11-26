@@ -10,5 +10,5 @@ import com.saas.salonsync.entity.StaffEntity;
 
 @Repository
 public interface StaffRepository extends JpaRepository<StaffEntity, UUID> {
-    List<StaffEntity> findBySaloonId(UUID saloonId);
+    List<StaffEntity> findBysalonId(UUID salonId);
 }

@@ -2,13 +2,13 @@ package com.saas.salonsync.DTO;
 
 import java.util.UUID;
 
-public class CreateSaloonRequest {
+public class CreatesalonRequest {
 
     private String name;
     private String address;
     private UUID ownerId;
 
-    public CreateSaloonRequest(String address, String name, UUID ownerId) {
+    public CreatesalonRequest(String address, String name, UUID ownerId) {
         this.address = address;
         this.name = name;
         this.ownerId = ownerId;

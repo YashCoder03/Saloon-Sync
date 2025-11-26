@@ -26,7 +26,7 @@ public class UserEntity {
     private String role;
 
     @Column(nullable=true)
-    private UUID saloonId;
+    private UUID salonId;
     
 
     // Default constructor required by JPA
@@ -39,11 +39,11 @@ public class UserEntity {
         this.username = username;
     }
 
-    public UserEntity(String email, String password, String role, UUID saloonId, String username) {
+    public UserEntity(String email, String password, String role, UUID salonId, String username) {
         this.email = email;
         this.password = password;
         this.role = role;
-        this.saloonId = saloonId;
+        this.salonId = salonId;
         this.username = username;
     }
 
@@ -83,11 +83,11 @@ public class UserEntity {
         this.role = role;
     }
 
-    public UUID getSaloonId() {
-        return saloonId;
+    public UUID getsalonId() {
+        return salonId;
     }
 
-    public void setSaloonId(UUID saloonId) {
-        this.saloonId = saloonId;
+    public void setsalonId(UUID salonId) {
+        this.salonId = salonId;
     }
 }

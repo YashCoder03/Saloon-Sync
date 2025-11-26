@@ -17,19 +17,17 @@ public class StaffService {
     @Autowired
     StaffRepository staffRepository;
 
-    public List<StaffEntity> getAllStaffBySaloonId(UUID saloonId){
+    public List<StaffEntity> getAllStaffBysalonId(UUID salonId){
 
-        List<StaffEntity> staffList = staffRepository.findBySaloonId(saloonId);
+        List<StaffEntity> staffList = staffRepository.findBysalonId(salonId);
         
         return staffList;
 
     }
     public void addStaff(StaffRequest staffRequest){
 
-        StaffEntity newStaffEntity = new StaffEntity(staffRequest.getSaloonId(), staffRequest.getRole(), staffRequest.getUserId());
+        StaffEntity newStaffEntity = new StaffEntity(staffRequest.getsalonId(), staffRequest.getRole(), staffRequest.getUserId());
         staffRepository.save(newStaffEntity);
-
-
     }
 
     public void deleteStaffById(UUID staffId){

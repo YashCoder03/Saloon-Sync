@@ -15,7 +15,7 @@ public class StaffEntity {
     private UUID id = UUID.randomUUID();
 
     @Column(nullable=false)
-    private UUID saloonId;
+    private UUID salonId;
 
     @Column(nullable=false)
     private String role;
@@ -23,9 +23,9 @@ public class StaffEntity {
     @Column(nullable=false)
     private UUID userId;
 
-    public StaffEntity(UUID id, UUID saloonId, String role, UUID userId) {
+    public StaffEntity(UUID id, UUID salonId, String role, UUID userId) {
         this.id = id;
-        this.saloonId = saloonId;
+        this.salonId = salonId;
         this.role = role;
         this.userId = userId;
     }
@@ -34,8 +34,8 @@ public class StaffEntity {
 
     }
 
-    public StaffEntity(UUID saloonId, String role, UUID userId) {
-        this.saloonId = saloonId;
+    public StaffEntity(UUID salonId, String role, UUID userId) {
+        this.salonId = salonId;
         this.role = role;
         this.userId = userId;
     }
@@ -48,12 +48,12 @@ public class StaffEntity {
         this.id = id;
     }
 
-    public UUID getSaloonId() {
-        return saloonId;
+    public UUID getsalonId() {
+        return salonId;
     }
 
-    public void setSaloonId(UUID saloonId) {
-        this.saloonId = saloonId;
+    public void setsalonId(UUID salonId) {
+        this.salonId = salonId;
     }
 
     public String getRole() {
