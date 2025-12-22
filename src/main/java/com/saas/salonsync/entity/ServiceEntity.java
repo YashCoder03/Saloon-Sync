@@ -4,17 +4,20 @@ import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity(name="service")
 public class ServiceEntity {
 
     @Id
     @Column(nullable=false)
-    private UUID id = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private  UUID id;
 
     @Column(nullable=false)
-    private UUID salonId;
+    private UUID saloonId;
 
     @Column(nullable=false)
     private String serviceName;
@@ -36,12 +39,12 @@ public class ServiceEntity {
         this.id = id;
     }
 
-    public UUID getSalonId() {
-        return salonId;
+    public UUID getSaloonId() {
+        return saloonId;
     }
 
-    public void setSalonId(UUID salonId) {
-        this.salonId = salonId;
+    public void setSaloonId(UUID salonId) {
+        this.saloonId = salonId;
     }
 
     public String getServiceName() {
@@ -79,15 +82,15 @@ public class ServiceEntity {
     public ServiceEntity(UUID id, UUID salonId, String serviceName, float price, int durationInseconds,
             String description) {
         this.id = id;
-        this.salonId = salonId;
+        this.saloonId = salonId;
         this.serviceName = serviceName;
         this.price = price;
         this.durationInseconds = durationInseconds;
         this.description = description;
     }
 
-    public ServiceEntity(UUID salonId, String serviceName, float price, int durationInseconds, String description) {
-        this.salonId = salonId;
+    public ServiceEntity(UUID saloonId, String serviceName, float price, int durationInseconds, String description) {
+        this.saloonId = saloonId;
         this.serviceName = serviceName;
         this.price = price;
         this.durationInseconds = durationInseconds;

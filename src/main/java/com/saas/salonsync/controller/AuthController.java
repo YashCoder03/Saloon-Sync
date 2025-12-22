@@ -1,7 +1,10 @@
 package com.saas.salonsync.controller;
 
 
+import java.time.Duration;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,17 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.Duration;
-
 import com.saas.salonsync.DTO.LoginRequest;
 import com.saas.salonsync.DTO.LoginResposne;
 import com.saas.salonsync.DTO.RegisterRequest;
 import com.saas.salonsync.DTO.TokenResponse;
 import com.saas.salonsync.entity.UserEntity;
 import com.saas.salonsync.service.AuthService;
-
-import org.springframework.http.HttpHeaders;
-
 
 import lombok.extern.slf4j.Slf4j;
 

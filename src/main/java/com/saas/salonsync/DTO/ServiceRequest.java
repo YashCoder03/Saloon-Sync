@@ -2,28 +2,20 @@ package com.saas.salonsync.DTO;
 
 import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
 
 public class ServiceRequest {
 
-    private UUID id ;
-    private UUID salonId;
+    private UUID saloonId;
     private String serviceName;
     private float price;
     private int durationInseconds;
     private String description;
-    public UUID getId() {
-        return id;
+
+    public UUID getSaloonId() {
+        return saloonId;
     }
-    public void setId(UUID id) {
-        this.id = id;
-    }
-    public UUID getSalonId() {
-        return salonId;
-    }
-    public void setSalonId(UUID salonId) {
-        this.salonId = salonId;
+    public void setSaloonId(UUID saloonId) {
+        this.saloonId = saloonId;
     }
     public String getServiceName() {
         return serviceName;
@@ -49,8 +41,8 @@ public class ServiceRequest {
     public void setDescription(String description) {
         this.description = description;
     }
-    public ServiceRequest(UUID salonId, String serviceName, float price, int durationInseconds, String description) {
-        this.salonId = salonId;
+    public ServiceRequest(UUID saloonId, String serviceName, float price, int durationInseconds, String description) {
+        this.saloonId = saloonId;
         this.serviceName = serviceName;
         this.price = price;
         this.durationInseconds = durationInseconds;

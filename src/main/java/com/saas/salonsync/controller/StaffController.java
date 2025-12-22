@@ -28,13 +28,13 @@ public class StaffController {
     @Autowired
     StaffService staffService;
 
-    @GetMapping("/:id")
-    public ResponseEntity<List<StaffEntity>> getStaffDetails(@RequestParam UUID salonId) {
-        List<StaffEntity> staffList = staffService.getAllStaffBysalonId(salonId);
+    @GetMapping("")
+    public ResponseEntity<List<StaffEntity>> getAllStaff(@RequestParam UUID saloonId) {
+        List<StaffEntity> staffList = staffService.getAllStaffBysaloonId(saloonId);
         return ResponseEntity.ok(staffList); 
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<String> addStaff(@RequestBody StaffRequest staffRequest) {
         staffService.addStaff(staffRequest);
         return ResponseEntity.ok("User Added successfully");

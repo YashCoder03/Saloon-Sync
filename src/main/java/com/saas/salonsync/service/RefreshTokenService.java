@@ -20,15 +20,15 @@ import com.saas.salonsync.repository.RefreshTokenRepository;
 @Service
 public class RefreshTokenService {
 
-    private final RefreshTokenRepository repo;
+    private final RefreshTokenRepository refreshTokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final SecureRandom secureRandom = new SecureRandom();
     private final long refreshDays;
 
-    public RefreshTokenService(RefreshTokenRepository repo,
+    public RefreshTokenService(RefreshTokenRepository refreshTokenRepository,
                                PasswordEncoder passwordEncoder,
                                @Value("${jwt.refresh-days:30}") long refreshDays) {
-        this.repo = repo;
+        this.refreshTokenRepository = refreshTokenRepository;
         this.passwordEncoder = passwordEncoder;
         this.refreshDays = refreshDays;
     }
@@ -41,21 +41,18 @@ public class RefreshTokenService {
 
     @Transactional
     public String createForUser(UUID userId) {
-        UUID id = UUID.randomUUID();
         String secret = genSecret();
         String hash = passwordEncoder.encode(secret);
         Instant now = Instant.now();
         Instant expiry = now.plus(refreshDays, ChronoUnit.DAYS);
 
-        TokenEntity t = new TokenEntity();
-        t.setId(id);
-        t.setUserId(userId);
-        t.setToken(hash);
-        t.setCreatedAt(now);
-        t.setExpiryDate(expiry);
-        repo.save(t);
+        TokenEntity tokenEntity = new TokenEntity(expiry, hash, userId);
+        
 
-        return id.toString() + "|" + secret;   // cookie value
+        TokenEntity savedTokenEntity =  refreshTokenRepository.save(tokenEntity);
+        System.out.println("Working till here"); 
+
+        return savedTokenEntity.getId().toString() + "|" + secret;   // cookie value
     }
 
     @Transactional(readOnly = true)
@@ -67,7 +64,7 @@ public class RefreshTokenService {
         try { id = UUID.fromString(parts[0]); } catch (IllegalArgumentException e) { return Optional.empty(); }
         String plain = parts[1];
 
-        return repo.findByIdAndRevokedFalse(id)
+        return refreshTokenRepository.findByIdAndRevokedFalse(id)
                    .filter(t -> t.getExpiryDate().isAfter(Instant.now()))
                    .filter(t -> passwordEncoder.matches(plain, t.getToken()));
     }
@@ -75,20 +72,20 @@ public class RefreshTokenService {
     @Transactional
     public String rotate(TokenEntity existing) {
         existing.setRevoked(true);
-        repo.save(existing);
+        refreshTokenRepository.save(existing);
         return createForUser(existing.getUserId());
     }
 
     @Transactional
     public void revokeByCookie(String cookieValue) {
-        validateCookie(cookieValue).ifPresent(t -> { t.setRevoked(true); repo.save(t); });
+        validateCookie(cookieValue).ifPresent(t -> { t.setRevoked(true); refreshTokenRepository.save(t); });
     }
 
     @Transactional
     public void revokeAllForUser(UUID userId) {
-        repo.findAll().stream()
+        refreshTokenRepository.findAll().stream()
             .filter(t -> !t.isRevoked() && t.getUserId().equals(userId))
-            .forEach(t -> { t.setRevoked(true); repo.save(t); });
+            .forEach(t -> { t.setRevoked(true); refreshTokenRepository.save(t); });
     }
 }
 

@@ -4,18 +4,21 @@ import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity(name="staff")
 public class StaffEntity {
     
 
     @Id
     @Column(unique = true, nullable = false)
-    private UUID id = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private  UUID id;
 
     @Column(nullable=false)
-    private UUID salonId;
+    private UUID saloonId;
 
     @Column(nullable=false)
     private String role;
@@ -23,9 +26,9 @@ public class StaffEntity {
     @Column(nullable=false)
     private UUID userId;
 
-    public StaffEntity(UUID id, UUID salonId, String role, UUID userId) {
+    public StaffEntity(UUID id, UUID saloonId, String role, UUID userId) {
         this.id = id;
-        this.salonId = salonId;
+        this.saloonId = saloonId;
         this.role = role;
         this.userId = userId;
     }
@@ -35,7 +38,7 @@ public class StaffEntity {
     }
 
     public StaffEntity(UUID salonId, String role, UUID userId) {
-        this.salonId = salonId;
+        this.saloonId = salonId;
         this.role = role;
         this.userId = userId;
     }
@@ -48,12 +51,12 @@ public class StaffEntity {
         this.id = id;
     }
 
-    public UUID getsalonId() {
-        return salonId;
+    public UUID getsaloonId() {
+        return saloonId;
     }
 
-    public void setsalonId(UUID salonId) {
-        this.salonId = salonId;
+    public void setsaloonId(UUID saloonId) {
+        this.saloonId = saloonId;
     }
 
     public String getRole() {

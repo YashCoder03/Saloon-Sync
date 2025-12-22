@@ -7,7 +7,7 @@ public class StaffRequest {
 
     private UUID id ;
 
-    private UUID salonId;
+    private UUID saloonId;
 
     private String role;
 
@@ -21,12 +21,12 @@ public class StaffRequest {
         this.id = id;
     }
 
-    public UUID getsalonId() {
-        return salonId;
+    public UUID getsaloonId() {
+        return saloonId;
     }
 
-    public void setsalonId(UUID salonId) {
-        this.salonId = salonId;
+    public void setsaloonId(UUID salonId) {
+        this.saloonId = salonId;
     }
 
     public String getRole() {
@@ -47,7 +47,7 @@ public class StaffRequest {
 
     public StaffRequest(UUID id, UUID salonId, String role, UUID userId) {
         this.id = id;
-        this.salonId = salonId;
+        this.saloonId = salonId;
         this.role = role;
         this.userId = userId;
     }

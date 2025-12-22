@@ -43,6 +43,7 @@ public class AuthService {
 
         
         JWTToken accessToken = new JWTToken(jwtUtil.generateToken(loginRequest.getUsername()));
+
         String refreshToken = refreshTokenService.createForUser(user.getId());
 
         return new LoginResposne(refreshToken,accessToken.getToken());    

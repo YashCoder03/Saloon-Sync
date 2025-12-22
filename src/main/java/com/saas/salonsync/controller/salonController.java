@@ -4,28 +4,25 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import com.saas.salonsync.entity.SalonEntity;
-import com.saas.salonsync.service.SalonService;
-
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.saas.salonsync.DTO.CreatesalonRequest;
+import com.saas.salonsync.entity.SalonEntity;
+import com.saas.salonsync.service.SalonService;
 
 
 
 
 @RestController
-@RequestMapping("/api/salon")
+@RequestMapping("/api/saloon")
 public class salonController {
 
     @Autowired
@@ -45,7 +42,7 @@ public class salonController {
         return salon;
     }
 
-    @GetMapping(":id")
+    @GetMapping("/:id")
     public ResponseEntity<SalonEntity> getsalonById(@RequestParam UUID salonId) {
         Optional<SalonEntity> salon = salonService.getsalonById(salonId);
         if(!salon.isPresent()){
