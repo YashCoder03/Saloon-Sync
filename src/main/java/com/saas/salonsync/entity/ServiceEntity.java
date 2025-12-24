@@ -26,7 +26,7 @@ public class ServiceEntity {
     private float price;
 
     @Column(nullable=false)
-    private int durationInseconds;
+    private long durationInSeconds;
 
     @Column(nullable=true)
     private String description;
@@ -63,12 +63,12 @@ public class ServiceEntity {
         this.price = price;
     }
 
-    public int getDurationInseconds() {
-        return durationInseconds;
+    public long getDurationInSeconds() {
+        return durationInSeconds;
     }
 
-    public void setDurationInseconds(int durationInseconds) {
-        this.durationInseconds = durationInseconds;
+    public void setDurationInSeconds(long durationInseconds) {
+        this.durationInSeconds = durationInseconds;
     }
 
     public String getDescription() {
@@ -79,21 +79,21 @@ public class ServiceEntity {
         this.description = description;
     }
 
-    public ServiceEntity(UUID id, UUID salonId, String serviceName, float price, int durationInseconds,
+    public ServiceEntity(UUID id, UUID salonId, String serviceName, float price, long durationInseconds,
             String description) {
         this.id = id;
         this.saloonId = salonId;
         this.serviceName = serviceName;
         this.price = price;
-        this.durationInseconds = durationInseconds;
+        this.durationInSeconds = durationInseconds;
         this.description = description;
     }
 
-    public ServiceEntity(UUID saloonId, String serviceName, float price, int durationInseconds, String description) {
+    public ServiceEntity(UUID saloonId, String serviceName, float price, long durationInSeconds, String description) {
         this.saloonId = saloonId;
         this.serviceName = serviceName;
         this.price = price;
-        this.durationInseconds = durationInseconds;
+        this.durationInSeconds = durationInSeconds;
         this.description = description;
     }
 

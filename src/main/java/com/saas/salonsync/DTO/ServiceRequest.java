@@ -8,7 +8,7 @@ public class ServiceRequest {
     private UUID saloonId;
     private String serviceName;
     private float price;
-    private int durationInseconds;
+    private long durationInSeconds;
     private String description;
 
     public UUID getSaloonId() {
@@ -29,11 +29,11 @@ public class ServiceRequest {
     public void setPrice(float price) {
         this.price = price;
     }
-    public int getDurationInseconds() {
-        return durationInseconds;
+    public long getDurationInSeconds() {
+        return durationInSeconds;
     }
-    public void setDurationInseconds(int durationInseconds) {
-        this.durationInseconds = durationInseconds;
+    public void setDurationInSeconds(long durationInseconds) {
+        this.durationInSeconds = durationInseconds;
     }
     public String getDescription() {
         return description;
@@ -41,11 +41,11 @@ public class ServiceRequest {
     public void setDescription(String description) {
         this.description = description;
     }
-    public ServiceRequest(UUID saloonId, String serviceName, float price, int durationInseconds, String description) {
+    public ServiceRequest(UUID saloonId, String serviceName, float price, long durationInseconds, String description) {
         this.saloonId = saloonId;
         this.serviceName = serviceName;
         this.price = price;
-        this.durationInseconds = durationInseconds;
+        this.durationInSeconds = durationInseconds;
         this.description = description;
     }
 

@@ -35,7 +35,7 @@ public class ServiceService {
 
         ServiceEntity serviceEntity = new ServiceEntity(saloonId, serviceRequest.getServiceName(), 
                                             serviceRequest.getPrice(),
-                                            serviceRequest.getDurationInseconds(), 
+                                            serviceRequest.getDurationInSeconds(), 
                                             serviceRequest.getDescription());
 
         serviceRepository.save(serviceEntity);
