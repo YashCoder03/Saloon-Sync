@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,16 +27,16 @@ public class ServiceController {
     ServiceService serviceService;
 
     @GetMapping("")
-    public ResponseEntity<List<ServiceEntity>> getService(@RequestParam UUID saloonId){
+    public ResponseEntity<List<ServiceEntity>> getService(@RequestParam UUID salonId){
 
-        List<ServiceEntity> serviceList = serviceService.getAllService(saloonId);
+        List<ServiceEntity> serviceList = serviceService.getAllService(salonId);
         return ResponseEntity.ok(serviceList);
 
     }
 
     @PostMapping("")
     public ResponseEntity<String> addService(@RequestBody ServiceRequest serviceRequest){
-        serviceService.addService(serviceRequest.getSaloonId(), serviceRequest);
+        serviceService.addService(serviceRequest.getsalonId(), serviceRequest);
         return ResponseEntity.ok("Service added successfully");
     }
 
@@ -44,9 +45,9 @@ public class ServiceController {
 
     }
 
-    @GetMapping("/:id")
-    public void getServiceById(@RequestParam UUID serviceId){
-        
+    @GetMapping("/{serviceId}")
+    public void getServiceById(@PathVariable UUID serviceId){
+
     }
     
 }

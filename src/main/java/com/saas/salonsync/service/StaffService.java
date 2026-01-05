@@ -1,5 +1,6 @@
 package com.saas.salonsync.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,20 +18,24 @@ public class StaffService {
     @Autowired
     StaffRepository staffRepository;
 
-    public List<StaffEntity> getAllStaffBysaloonId(UUID saloonId){
+    public List<StaffEntity> getAllStaffBySalonId(UUID salonId){
 
-        List<StaffEntity> staffList = staffRepository.findBysaloonId(saloonId);
+        List<StaffEntity> staffList = staffRepository.findBySalonId(salonId);
         
         return staffList;
 
     }
     public void addStaff(StaffRequest staffRequest){
-
-        StaffEntity newStaffEntity = new StaffEntity(staffRequest.getsaloonId(), staffRequest.getRole(), staffRequest.getUserId());
+        StaffEntity newStaffEntity = new StaffEntity(staffRequest.getSalonId(), staffRequest.getRole(), staffRequest.getUserId());
         staffRepository.save(newStaffEntity);
     }
 
     public void deleteStaffById(UUID staffId){
         staffRepository.deleteById(staffId);
+    }
+
+    public List<StaffEntity> getAvailableStaffBySalonId(UUID salonId, Date appointmentDate) {
+        List<StaffEntity> availableStaffList = staffRepository.findAvailableStaffBySalonAndDate(salonId, appointmentDate);
+        return availableStaffList;
     }
 }

@@ -1,9 +1,12 @@
 package com.saas.salonsync.controller;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,9 +31,16 @@ public class StaffController {
     @Autowired
     StaffService staffService;
 
-    @GetMapping("")
-    public ResponseEntity<List<StaffEntity>> getAllStaff(@RequestParam UUID saloonId) {
-        List<StaffEntity> staffList = staffService.getAllStaffBysaloonId(saloonId);
+    @GetMapping("/{salonId}")
+    public ResponseEntity<List<StaffEntity>> getAllStaff(@PathVariable UUID salonId, 
+        @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate appointmentDate) {
+
+        if (appointmentDate != null) {
+            List<StaffEntity> availableStaffList = staffService.getAvailableStaffBySalonId(salonId, java.sql.Date.valueOf(appointmentDate));
+            return ResponseEntity.ok(availableStaffList);
+        }
+
+        List<StaffEntity> staffList = staffService.getAllStaffBySalonId(salonId);
         return ResponseEntity.ok(staffList); 
     }
 
@@ -44,6 +54,6 @@ public class StaffController {
         staffService.deleteStaffById(staffId);
         return ResponseEntity.ok("Staff deleted successfully");
     }
-    
-    
+
+
 }

@@ -9,6 +9,6 @@ import com.saas.salonsync.entity.ServiceEntity;
 
 public interface ServiceRepository extends  JpaRepository<ServiceEntity,UUID>{
 
-    ServiceEntity findByIdAndSaloonId(UUID serviceId,UUID salonId);
-    List<ServiceEntity> findBySaloonId(UUID saloonId);
+    ServiceEntity findByIdAndSalonId(UUID serviceId,UUID salonId);
+    List<ServiceEntity> findBySalonId(UUID salonId);
 }

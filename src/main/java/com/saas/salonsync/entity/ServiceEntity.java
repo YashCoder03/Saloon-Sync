@@ -17,7 +17,7 @@ public class ServiceEntity {
     private  UUID id;
 
     @Column(nullable=false)
-    private UUID saloonId;
+    private UUID salonId;
 
     @Column(nullable=false)
     private String serviceName;
@@ -39,12 +39,12 @@ public class ServiceEntity {
         this.id = id;
     }
 
-    public UUID getSaloonId() {
-        return saloonId;
+    public UUID getsalonId() {
+        return salonId;
     }
 
-    public void setSaloonId(UUID salonId) {
-        this.saloonId = salonId;
+    public void setsalonId(UUID salonId) {
+        this.salonId = salonId;
     }
 
     public String getServiceName() {
@@ -82,15 +82,15 @@ public class ServiceEntity {
     public ServiceEntity(UUID id, UUID salonId, String serviceName, float price, long durationInseconds,
             String description) {
         this.id = id;
-        this.saloonId = salonId;
+        this.salonId = salonId;
         this.serviceName = serviceName;
         this.price = price;
         this.durationInSeconds = durationInseconds;
         this.description = description;
     }
 
-    public ServiceEntity(UUID saloonId, String serviceName, float price, long durationInSeconds, String description) {
-        this.saloonId = saloonId;
+    public ServiceEntity(UUID salonId, String serviceName, float price, long durationInSeconds, String description) {
+        this.salonId = salonId;
         this.serviceName = serviceName;
         this.price = price;
         this.durationInSeconds = durationInSeconds;

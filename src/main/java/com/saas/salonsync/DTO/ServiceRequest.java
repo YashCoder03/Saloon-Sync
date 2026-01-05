@@ -5,17 +5,17 @@ import java.util.UUID;
 
 public class ServiceRequest {
 
-    private UUID saloonId;
+    private UUID salonId;
     private String serviceName;
     private float price;
     private long durationInSeconds;
     private String description;
 
-    public UUID getSaloonId() {
-        return saloonId;
+    public UUID getsalonId() {
+        return salonId;
     }
-    public void setSaloonId(UUID saloonId) {
-        this.saloonId = saloonId;
+    public void setsalonId(UUID salonId) {
+        this.salonId = salonId;
     }
     public String getServiceName() {
         return serviceName;
@@ -41,8 +41,8 @@ public class ServiceRequest {
     public void setDescription(String description) {
         this.description = description;
     }
-    public ServiceRequest(UUID saloonId, String serviceName, float price, long durationInseconds, String description) {
-        this.saloonId = saloonId;
+    public ServiceRequest(UUID salonId, String serviceName, float price, long durationInseconds, String description) {
+        this.salonId = salonId;
         this.serviceName = serviceName;
         this.price = price;
         this.durationInSeconds = durationInseconds;

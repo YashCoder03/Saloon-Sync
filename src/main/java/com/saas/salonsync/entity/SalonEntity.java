@@ -9,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity(name = "saloon")
+@Entity(name = "salon")
 public class SalonEntity {
     
     @Id

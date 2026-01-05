@@ -17,23 +17,23 @@ public class ServiceService {
     @Autowired
     private ServiceRepository serviceRepository;
 
-    public List<ServiceEntity> getAllService(UUID saloonId) {
-        List<ServiceEntity> results = serviceRepository.findBySaloonId(saloonId);
+    public List<ServiceEntity> getAllService(UUID salonId) {
+        List<ServiceEntity> results = serviceRepository.findBySalonId(salonId);
         return results;
     }
 
-    public ServiceEntity getServiceById(UUID tenantId,UUID serviceId) {
-        ServiceEntity results = serviceRepository.findByIdAndSaloonId(serviceId, tenantId);
+    public ServiceEntity getServiceById(UUID salonId,UUID serviceId) {
+        ServiceEntity results = serviceRepository.findByIdAndSalonId(serviceId, salonId);
         return results;
     }
 
-    public void deleteServiceById(UUID tenantId,UUID serviceId){
+    public void deleteServiceById(UUID serviceId){
         serviceRepository.deleteById(serviceId);
     }
 
-    public void addService(UUID saloonId, ServiceRequest serviceRequest){
+    public void addService(UUID salonId, ServiceRequest serviceRequest){
 
-        ServiceEntity serviceEntity = new ServiceEntity(saloonId, serviceRequest.getServiceName(), 
+        ServiceEntity serviceEntity = new ServiceEntity(salonId, serviceRequest.getServiceName(), 
                                             serviceRequest.getPrice(),
                                             serviceRequest.getDurationInSeconds(), 
                                             serviceRequest.getDescription());
